@@ -1,65 +1,131 @@
-import Image from "next/image";
+// ============================================
+// Main Page - Assembling All Components
+// ============================================
+// This is where we bring together all our components
+// Think of it like the final assembly of LEGO pieces
+
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import About from "@/components/About";
+import SkillBadge from "@/components/SkillBadge";
+import ProjectCard from "@/components/ProjectCard";
+import Contact from "@/components/Contact";
+import Footer from "@/components/Footer";
 
 export default function Home() {
+  // ============================================
+  // Data - In a real app, this might come from a database
+  // ============================================
+  // Technical skills I'm building
+  const techSkills = [
+    "JavaScript",
+    "TypeScript", 
+    "React",
+    "Next.js",
+    "Node.js",
+    "Tailwind CSS",
+    "Git",
+    "HTML/CSS"
+  ];
+
+  // Finance & business skills
+  const businessSkills = [
+    "Financial Modeling",
+    "Excel",
+    "Bloomberg Terminal",
+    "FactSet",
+    "Equity Research",
+    "ESG Analysis",
+    "Spanish (Proficient)"
+  ];
+
+  const projects = [
+    {
+      title: "Portfolio Website",
+      description: "My personal portfolio built with Next.js and Tailwind CSS. A showcase of my journey into software development.",
+      tech: "Next.js, React, Tailwind CSS, TypeScript"
+    },
+    {
+      title: "Resell Miami",
+      description: "Founded a luxury goods reselling business with 200+ clients, generating $15K+ in revenue through social media marketing and customer relationships.",
+      tech: "Entrepreneurship, Marketing, E-commerce"
+    },
+    {
+      title: "South Florida Financial Assets Club",
+      description: "Founded a county-wide finance club with 60+ students, organizing workshops and connecting students with professional mentors.",
+      tech: "Leadership, Event Planning, Mentorship"
+    }
+  ];
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <div className="min-h-screen bg-white dark:bg-gray-900">
+      {/* Header - Fixed navigation at top */}
+      <Header />
+
+      {/* Main content area */}
+      <main className="max-w-4xl mx-auto px-6 py-20">
+        
+        {/* Hero Section - Introduction */}
+        <Hero />
+
+        {/* About Section - Your story */}
+        <About />
+
+        {/* Skills Section */}
+        <section id="skills" className="mb-20 scroll-mt-20">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            Skills & Technologies
+          </h2>
+          
+          {/* Tech Skills */}
+          <div className="mb-8">
+            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
+              Technical Skills (Building)
+            </h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              {techSkills.map((skill) => (
+                <SkillBadge key={skill} skill={skill} />
+              ))}
+            </div>
+          </div>
+
+          {/* Business & Finance Skills */}
+          <div>
+            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
+              Finance & Business
+            </h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              {businessSkills.map((skill) => (
+                <SkillBadge key={skill} skill={skill} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="mb-20 scroll-mt-20">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+            Featured Projects
+          </h2>
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <ProjectCard
+                key={project.title}
+                title={project.title}
+                description={project.description}
+                tech={project.tech}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* Contact Section */}
+        <Contact />
+
       </main>
+
+      {/* Footer - Bottom of page */}
+      <Footer />
     </div>
   );
 }
