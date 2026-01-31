@@ -39,21 +39,31 @@ export default function Home() {
     "Spanish (Proficient)"
   ];
 
+  // Projects array - live links to deployed apps!
   const projects = [
     {
       title: "Portfolio Website",
       description: "My personal portfolio built with Next.js and Tailwind CSS. A showcase of my journey into software development.",
-      tech: "Next.js, React, Tailwind CSS, TypeScript"
+      tech: "Next.js, React, Tailwind CSS, TypeScript",
+      link: "https://portfolio-adszapiro.vercel.app"
     },
     {
-      title: "Resell Miami",
-      description: "Founded a luxury goods reselling business with 200+ clients, generating $15K+ in revenue through social media marketing and customer relationships.",
-      tech: "Entrepreneurship, Marketing, E-commerce"
+      title: "Todo App",
+      description: "A task management app with categories, priorities, and local storage persistence. Add tasks, mark complete, filter by status.",
+      tech: "React, TypeScript, Local Storage",
+      link: "https://alexszapiro-to-do.vercel.app"
     },
     {
-      title: "South Florida Financial Assets Club",
-      description: "Founded a county-wide finance club with 60+ students, organizing workshops and connecting students with professional mentors.",
-      tech: "Leadership, Event Planning, Mentorship"
+      title: "Expense Tracker",
+      description: "Track spending by category with visual charts and budget goals. Coming soon!",
+      tech: "Next.js, React, Chart.js",
+      link: null // Will add when built
+    },
+    {
+      title: "Investment Tracker",
+      description: "Monitor portfolio performance, track holdings, and analyze returns. Coming soon!",
+      tech: "Next.js, React, Finance APIs",
+      link: null // Will add when built
     }
   ];
 
@@ -114,6 +124,7 @@ export default function Home() {
                 title={project.title}
                 description={project.description}
                 tech={project.tech}
+                link={project.link}
               />
             ))}
           </div>
