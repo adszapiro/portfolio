@@ -19,12 +19,8 @@ export default function Home() {
   ];
 
   const businessSkills = [
-    "Financial Modeling",
     "Excel",
-    "Bloomberg Terminal",
     "FactSet",
-    "Equity Research",
-    "ESG Analysis",
     "Spanish"
   ];
 
