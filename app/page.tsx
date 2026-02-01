@@ -30,14 +30,8 @@ export default function Home() {
 
   const projects = [
     {
-      title: "Portfolio Website",
-      description: "My personal portfolio showcasing my journey into software development. Built with modern web technologies and deployed on Vercel.",
-      tech: "Next.js, React, Tailwind CSS, TypeScript",
-      link: "https://portfolio-adszapiro.vercel.app"
-    },
-    {
       title: "Todo App",
-      description: "A full-stack task manager with real-time sync, categories, due dates, and automatic email integration. Tasks sync from weekly emails automatically.",
+      description: "A full-stack task manager with real-time sync, categories, due dates, and automatic email integration. Tasks sync from weekly coaching emails automatically.",
       tech: "React, TypeScript, Supabase, Google Apps Script",
       link: "https://alexszapiro-to-do.vercel.app"
     },
