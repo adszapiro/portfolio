@@ -26,22 +26,16 @@ export default function Home() {
 
   const projects = [
     {
+      title: "Algo Backtester",
+      description: "Test trading strategies on historical stock and crypto data. Features SMA crossover, RSI, MACD, and Bollinger Bands strategies with performance metrics.",
+      tech: "Next.js, TypeScript, Yahoo Finance, CoinGecko API",
+      link: null // Will update after Vercel deploy
+    },
+    {
       title: "Todo App",
       description: "A full-stack task manager with real-time sync, categories, due dates, and automatic email integration. Tasks sync from weekly coaching emails automatically.",
       tech: "React, TypeScript, Supabase, Google Apps Script",
       link: "https://alexszapiro-to-do.vercel.app"
-    },
-    {
-      title: "Expense Tracker",
-      description: "Track spending by category with visual charts and budget goals. Analyze spending patterns and set financial targets.",
-      tech: "Next.js, React, Chart.js",
-      link: null
-    },
-    {
-      title: "Investment Tracker",
-      description: "Monitor portfolio performance, track holdings across accounts, and analyze returns with real-time market data.",
-      tech: "Next.js, React, Finance APIs",
-      link: null
     }
   ];
 

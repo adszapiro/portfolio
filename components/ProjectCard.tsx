@@ -9,6 +9,7 @@ export default function ProjectCard({ title, description, tech, link }: ProjectC
   const isComingSoon = !link;
   
   const getIcon = () => {
+    if (title.includes("Backtester")) return "📊";
     if (title.includes("Todo")) return "✅";
     if (title.includes("Expense")) return "💰";
     if (title.includes("Investment")) return "📈";
