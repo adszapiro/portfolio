@@ -29,7 +29,7 @@ export default function Home() {
       title: "Algo Backtester",
       description: "Test trading strategies on historical stock and crypto data. Features SMA crossover, RSI, MACD, and Bollinger Bands strategies with performance metrics.",
       tech: "Next.js, TypeScript, Yahoo Finance, CoinGecko API",
-      link: null // Will update after Vercel deploy
+      link: "https://szap-backtester.vercel.app"
     },
     {
       title: "Todo App",
