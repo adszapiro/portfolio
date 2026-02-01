@@ -1,89 +1,105 @@
+"use client";
+
+import { ExternalLink } from "lucide-react";
+
 interface ProjectCardProps {
   title: string;
   description: string;
   tech: string;
   link?: string | null;
+  status?: "live" | "coming-soon" | "in-progress";
+  icon?: string;
 }
 
-export default function ProjectCard({ title, description, tech, link }: ProjectCardProps) {
-  const isComingSoon = !link;
+export default function ProjectCard({ title, description, tech, link, status = "live", icon }: ProjectCardProps) {
+  const isLive = status === "live" && link;
   
-  const getIcon = () => {
-    if (title.includes("Backtester")) return "📊";
-    if (title.includes("Todo")) return "✅";
-    if (title.includes("Expense")) return "💰";
-    if (title.includes("Investment")) return "📈";
-    if (title.includes("Portfolio")) return "🌐";
-    return "🚀";
+  // Status badge
+  const StatusBadge = () => {
+    if (status === "live" && link) {
+      return (
+        <span className="text-xs px-2 py-1 bg-green-900/50 text-green-300 rounded-full font-medium flex items-center gap-1 border border-green-700">
+          <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+          Live
+        </span>
+      );
+    }
+    if (status === "in-progress") {
+      return (
+        <span className="text-xs px-2 py-1 bg-blue-900/50 text-blue-300 rounded-full font-medium border border-blue-700">
+          In Progress
+        </span>
+      );
+    }
+    return (
+      <span className="text-xs px-2 py-1 bg-yellow-900/50 text-yellow-300 rounded-full font-medium border border-yellow-700">
+        Coming Soon
+      </span>
+    );
   };
 
+  // Default icon based on title
+  const getDefaultIcon = () => {
+    if (icon) return icon;
+    if (title.includes("Todo")) return "✅";
+    if (title.includes("Backtester") || title.includes("Trading")) return "📈";
+    if (title.includes("Agent") || title.includes("AI")) return "🤖";
+    if (title.includes("Bot")) return "💹";
+    if (title.includes("Resume")) return "📄";
+    if (title.includes("Wallet")) return "🔍";
+    return "🚀";
+  };
+  
   const cardContent = (
-    <>
-      {/* Status Badge */}
-      <div className="absolute top-4 right-4">
-        {isComingSoon ? (
-          <span className="text-xs px-3 py-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 rounded-full font-medium">
-            Coming Soon
-          </span>
-        ) : (
-          <span className="text-xs px-3 py-1 bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20 rounded-full font-medium flex items-center gap-1">
-            <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
-            Live
-          </span>
-        )}
+    <div className="relative p-6 bg-gray-800/50 border border-gray-700 rounded-xl h-full transition-all duration-300 group-hover:border-purple-500/50 group-hover:bg-gray-800/80">
+      {/* Header with icon and status */}
+      <div className="flex items-start justify-between mb-4">
+        <div className="w-12 h-12 bg-purple-900/50 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform border border-purple-700/50">
+          <span className="text-2xl">{getDefaultIcon()}</span>
+        </div>
+        <StatusBadge />
       </div>
       
-      {/* Project icon */}
-      <div className="w-14 h-14 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/10 transition-all">
-        <span className="text-2xl">{getIcon()}</span>
-      </div>
-      
-      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+      <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-purple-300 transition-colors">
         {title}
       </h3>
       
-      <p className="text-slate-600 dark:text-slate-300 mb-5 leading-relaxed line-clamp-3">
+      <p className="text-gray-400 mb-4 line-clamp-3 text-sm">
         {description}
       </p>
       
-      {/* Tech stack */}
-      <div className="flex flex-wrap gap-2 mb-5">
+      {/* Tech stack tags */}
+      <div className="flex flex-wrap gap-2 mb-4">
         {tech.split(", ").map((t) => (
           <span 
             key={t}
-            className="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-400 rounded-lg font-medium"
+            className="text-xs px-2 py-1 bg-gray-700/50 text-gray-400 rounded border border-gray-600"
           >
             {t}
           </span>
         ))}
       </div>
       
-      {/* Action */}
-      {!isComingSoon && (
-        <div className="pt-5 border-t border-slate-200/50 dark:border-slate-700/50">
-          <span className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 text-sm font-semibold group-hover:gap-3 transition-all">
-            View Project
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </span>
+      {/* View Project link for live projects */}
+      {isLive && (
+        <div className="mt-auto pt-4 border-t border-gray-700 flex items-center gap-2 text-purple-400 text-sm font-medium group-hover:text-purple-300">
+          View Project
+          <ExternalLink className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
         </div>
       )}
-    </>
+    </div>
   );
-
-  const wrapperClasses = `group relative p-6 bg-white dark:bg-slate-800 border border-slate-200/50 dark:border-slate-700/50 rounded-2xl hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 ${!isComingSoon ? 'cursor-pointer' : ''}`;
 
   if (link) {
     return (
-      <a href={link} target="_blank" rel="noopener noreferrer" className={wrapperClasses}>
+      <a href={link} target="_blank" rel="noopener noreferrer" className="group block h-full">
         {cardContent}
       </a>
     );
   }
 
   return (
-    <div className={wrapperClasses}>
+    <div className="group h-full">
       {cardContent}
     </div>
   );
