@@ -1,25 +1,18 @@
-// ============================================
-// Footer Component - Bottom of the Page
-// ============================================
-
 export default function Footer() {
-  // Get the current year dynamically
-  // new Date() creates a date object, .getFullYear() gets the year
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="py-8 border-t border-gray-200 dark:border-gray-800">
-      <div className="max-w-4xl mx-auto px-6 text-center">
-        <p className="text-gray-600 dark:text-gray-400">
-          © {currentYear} Alex Szapiro. Built with Next.js & Tailwind CSS.
-        </p>
-        <p className="text-sm text-gray-500 dark:text-gray-500 mt-2">
-          Designed and developed with care.
-        </p>
+    <footer className="py-12 border-t border-slate-200/50 dark:border-slate-800/50 bg-slate-50/50 dark:bg-slate-900/50">
+      <div className="max-w-5xl mx-auto px-6">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-slate-600 dark:text-slate-400">
+            © {currentYear} Alex Szapiro
+          </p>
+          <p className="text-sm text-slate-500 dark:text-slate-500">
+            Built with Next.js & Tailwind CSS
+          </p>
+        </div>
       </div>
     </footer>
   );
 }
-
-// new Date().getFullYear() returns the current year (e.g., 2024)
-// This means you never have to update the copyright year manually!

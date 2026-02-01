@@ -1,76 +1,81 @@
-// ============================================
-// ProjectCard Component - With Links Support
-// ============================================
-
 interface ProjectCardProps {
   title: string;
   description: string;
   tech: string;
-  link?: string | null; // Optional link - null means "coming soon"
+  link?: string | null;
 }
 
 export default function ProjectCard({ title, description, tech, link }: ProjectCardProps) {
   const isComingSoon = !link;
   
-  // The card content - same whether it's a link or not
+  const getIcon = () => {
+    if (title.includes("Todo")) return "✅";
+    if (title.includes("Expense")) return "💰";
+    if (title.includes("Investment")) return "📈";
+    if (title.includes("Portfolio")) return "🌐";
+    return "🚀";
+  };
+
   const cardContent = (
     <>
-      {/* Coming Soon Badge */}
-      {isComingSoon && (
-        <div className="absolute top-4 right-4">
-          <span className="text-xs px-2 py-1 bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200 rounded-full font-medium">
+      {/* Status Badge */}
+      <div className="absolute top-4 right-4">
+        {isComingSoon ? (
+          <span className="text-xs px-3 py-1 bg-amber-500/10 text-amber-600 dark:text-amber-400 border border-amber-500/20 rounded-full font-medium">
             Coming Soon
           </span>
-        </div>
-      )}
-      
-      {/* Project icon */}
-      <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-        <span className="text-2xl">
-          {title.includes("Todo") ? "✅" : 
-           title.includes("Expense") ? "💰" : 
-           title.includes("Investment") ? "📈" : 
-           title.includes("Portfolio") ? "🌐" : "🚀"}
-        </span>
+        ) : (
+          <span className="text-xs px-3 py-1 bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/20 rounded-full font-medium flex items-center gap-1">
+            <span className="w-1.5 h-1.5 bg-green-500 rounded-full" />
+            Live
+          </span>
+        )}
       </div>
       
-      <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+      {/* Project icon */}
+      <div className="w-14 h-14 bg-gradient-to-br from-blue-500/10 to-indigo-500/10 rounded-2xl flex items-center justify-center mb-5 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-blue-500/10 transition-all">
+        <span className="text-2xl">{getIcon()}</span>
+      </div>
+      
+      <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
         {title}
       </h3>
       
-      <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-3">
+      <p className="text-slate-600 dark:text-slate-300 mb-5 leading-relaxed line-clamp-3">
         {description}
       </p>
       
-      {/* Tech stack tags */}
-      <div className="flex flex-wrap gap-2">
+      {/* Tech stack */}
+      <div className="flex flex-wrap gap-2 mb-5">
         {tech.split(", ").map((t) => (
           <span 
             key={t}
-            className="text-xs px-2 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded"
+            className="text-xs px-2.5 py-1 bg-slate-100 dark:bg-slate-700/50 text-slate-600 dark:text-slate-400 rounded-lg font-medium"
           >
             {t}
           </span>
         ))}
       </div>
       
-      {/* View Project link for live projects */}
+      {/* Action */}
       {!isComingSoon && (
-        <div className="mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-          <span className="text-blue-600 dark:text-blue-400 text-sm font-medium group-hover:underline">
-            View Project →
+        <div className="pt-5 border-t border-slate-200/50 dark:border-slate-700/50">
+          <span className="inline-flex items-center gap-2 text-blue-600 dark:text-blue-400 text-sm font-semibold group-hover:gap-3 transition-all">
+            View Project
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </span>
         </div>
       )}
     </>
   );
 
-  // Wrapper - either a link or a div
-  const wrapperClasses = `group relative p-6 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:shadow-xl hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 ${!isComingSoon ? 'cursor-pointer' : ''}`;
+  const wrapperClasses = `group relative p-6 bg-white dark:bg-slate-800 border border-slate-200/50 dark:border-slate-700/50 rounded-2xl hover:shadow-xl hover:shadow-blue-500/5 hover:border-blue-300 dark:hover:border-blue-600 transition-all duration-300 ${!isComingSoon ? 'cursor-pointer' : ''}`;
 
   if (link) {
     return (
-      <a href={link} className={wrapperClasses}>
+      <a href={link} target="_blank" rel="noopener noreferrer" className={wrapperClasses}>
         {cardContent}
       </a>
     );

@@ -1,9 +1,3 @@
-// ============================================
-// Main Page - Assembling All Components
-// ============================================
-// This is where we bring together all our components
-// Think of it like the final assembly of LEGO pieces
-
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
@@ -13,10 +7,6 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-  // ============================================
-  // Data - In a real app, this might come from a database
-  // ============================================
-  // Technical skills I'm building
   const techSkills = [
     "JavaScript",
     "TypeScript", 
@@ -25,10 +15,9 @@ export default function Home() {
     "Node.js",
     "Tailwind CSS",
     "Git",
-    "HTML/CSS"
+    "Supabase"
   ];
 
-  // Finance & business skills
   const businessSkills = [
     "Financial Modeling",
     "Excel",
@@ -36,61 +25,57 @@ export default function Home() {
     "FactSet",
     "Equity Research",
     "ESG Analysis",
-    "Spanish (Proficient)"
+    "Spanish"
   ];
 
-  // Projects array - live links to deployed apps!
   const projects = [
     {
       title: "Portfolio Website",
-      description: "My personal portfolio built with Next.js and Tailwind CSS. A showcase of my journey into software development.",
+      description: "My personal portfolio showcasing my journey into software development. Built with modern web technologies and deployed on Vercel.",
       tech: "Next.js, React, Tailwind CSS, TypeScript",
       link: "https://portfolio-adszapiro.vercel.app"
     },
     {
       title: "Todo App",
-      description: "A task management app with categories, priorities, and local storage persistence. Add tasks, mark complete, filter by status.",
-      tech: "React, TypeScript, Local Storage",
+      description: "A full-stack task manager with real-time sync, categories, due dates, and automatic email integration. Tasks sync from weekly emails automatically.",
+      tech: "React, TypeScript, Supabase, Google Apps Script",
       link: "https://alexszapiro-to-do.vercel.app"
     },
     {
       title: "Expense Tracker",
-      description: "Track spending by category with visual charts and budget goals. Coming soon!",
+      description: "Track spending by category with visual charts and budget goals. Analyze spending patterns and set financial targets.",
       tech: "Next.js, React, Chart.js",
-      link: null // Will add when built
+      link: null
     },
     {
       title: "Investment Tracker",
-      description: "Monitor portfolio performance, track holdings, and analyze returns. Coming soon!",
+      description: "Monitor portfolio performance, track holdings across accounts, and analyze returns with real-time market data.",
       tech: "Next.js, React, Finance APIs",
-      link: null // Will add when built
+      link: null
     }
   ];
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900">
-      {/* Header - Fixed navigation at top */}
+    <div className="min-h-screen bg-gradient-to-b from-white via-slate-50 to-white dark:from-slate-900 dark:via-slate-900 dark:to-slate-900">
       <Header />
 
-      {/* Main content area */}
-      <main className="max-w-4xl mx-auto px-6 py-20">
-        
-        {/* Hero Section - Introduction */}
+      <main className="max-w-5xl mx-auto px-6 py-20">
         <Hero />
-
-        {/* About Section - Your story */}
         <About />
 
         {/* Skills Section */}
-        <section id="skills" className="mb-20 scroll-mt-20">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            Skills & Technologies
-          </h2>
+        <section id="skills" className="mb-24 scroll-mt-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              Skills & Technologies
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full" />
+          </div>
           
           {/* Tech Skills */}
-          <div className="mb-8">
-            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
-              Technical Skills (Building)
+          <div className="mb-10">
+            <h3 className="text-lg font-semibold text-slate-500 dark:text-slate-400 mb-5 text-center uppercase tracking-wide">
+              Technical
             </h3>
             <div className="flex flex-wrap justify-center gap-3">
               {techSkills.map((skill) => (
@@ -99,9 +84,9 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Business & Finance Skills */}
+          {/* Business Skills */}
           <div>
-            <h3 className="text-xl font-semibold text-gray-700 dark:text-gray-300 mb-4 text-center">
+            <h3 className="text-lg font-semibold text-slate-500 dark:text-slate-400 mb-5 text-center uppercase tracking-wide">
               Finance & Business
             </h3>
             <div className="flex flex-wrap justify-center gap-3">
@@ -113,11 +98,15 @@ export default function Home() {
         </section>
 
         {/* Projects Section */}
-        <section id="projects" className="mb-20 scroll-mt-20">
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            Featured Projects
-          </h2>
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+        <section id="projects" className="mb-24 scroll-mt-20">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white mb-4">
+              Featured Projects
+            </h2>
+            <div className="w-20 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full" />
+          </div>
+          
+          <div className="grid gap-6 md:grid-cols-2">
             {projects.map((project) => (
               <ProjectCard
                 key={project.title}
@@ -130,12 +119,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Contact Section */}
         <Contact />
-
       </main>
 
-      {/* Footer - Bottom of page */}
       <Footer />
     </div>
   );
